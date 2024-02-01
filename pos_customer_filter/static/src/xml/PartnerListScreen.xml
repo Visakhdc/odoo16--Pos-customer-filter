@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="PartnerListScreen" t-inherit="point_of_sale.PartnerListScreen" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('top-right-buttons')]" position="replace">
+                <div class="top-right-buttons">
+                    <div class="button" t-on-click="all" style="font-size: 18px;font-weight: bold;">
+                    <i t-if="env.isMobile" class="fa fa-angle-double-right"/>
+                    <t t-if="!env.isMobile"> All</t>
+                </div>
+                <div class="button" style="font-size: 12px;font-weight: bold;" t-on-click="loyal">
+                    <i t-if="env.isMobile" class="category-simple-button"/>
+                    <t t-if="!env.isMobile"> Loyal</t>
+                </div>
+                <div class="button" t-on-click="impulse" style="font-size: 12px;font-weight: bold;">
+                    <i t-if="env.isMobile" class="fa fa-angle-double-right"/>
+                    <t t-if="!env.isMobile"> Impulse</t>
+                </div>
+                <div class="button" t-on-click="potential" style="font-size: 12px;font-weight: bold;">
+                    <i t-if="env.isMobile" class="fa fa-angle-double-right"/>
+                    <t t-if="!env.isMobile"> Potential</t>
+                </div>
+                    <div t-if="state.detailIsShown &amp;&amp; state.editModeProps.partner.id" class="button more-info">
+                        <a t-att-href="partnerLink" target="_blank"> More info</a>
+                    </div>
+                    <div class="search-bar-container sb-partner" t-if="!state.detailIsShown">
+                        <div class="pos-search-bar">
+                            <i class="fa fa-search" t-on-click="_onPressEnterKey"/>
+                            <input t-ref="search-word-input-partner" placeholder="Search Customers..." size="1" t-on-keyup="updatePartnerList" />
+                            <i class="fa fa-times" t-on-click="_clearSearch"/>
+                        </div>
+                    </div>
+                </div>
+        </xpath>
+    </t>
+</templates>
